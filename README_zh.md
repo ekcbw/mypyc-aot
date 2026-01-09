@@ -176,4 +176,4 @@ compiler.use_custom_compiler("gcc", "g++")
 
 ## 版本
 
-当前`mypyc_aot`版本：1.0.1
+当前`mypyc_aot`版本：1.0.2

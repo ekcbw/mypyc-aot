@@ -1,5 +1,5 @@
-<span class="badge-placeholder">[![GitHub release](https://img.shields.io/github/v/release/ekcbw/mypyc_aot)](https://github.com/ekcbw/mypyc_aot/releases/latest)</span>
-<span class="badge-placeholder">[![License: MIT](https://img.shields.io/github/license/ekcbw/mypyc_aot)](https://github.com/ekcbw/mypyc_aot/blob/main/LICENSE)</span>
+<span class="badge-placeholder">[![GitHub release](https://img.shields.io/github/v/release/ekcbw/mypyc-aot)](https://github.com/ekcbw/mypyc-aot/releases/latest)</span>
+<span class="badge-placeholder">[![License: MIT](https://img.shields.io/github/license/ekcbw/mypyc-aot)](https://github.com/ekcbw/mypyc-aot/blob/main/LICENSE)</span>
 
 [English | [简体中文](README_zh.md)]
 
@@ -178,4 +178,4 @@ There are a few directions to consider for troubleshooting:
 
 ## Version
 
-Current `mypyc_aot` version: 1.0.1
+Current `mypyc_aot` version: 1.0.2

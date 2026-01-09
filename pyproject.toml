@@ -1,15 +1,22 @@
 [project]
 name = "mypyc-aot"
-version = "1.0.1"
+version = "1.0.2"
 description = "A performance optimization library based on mypyc, similar to numba but supporting accelerating general Python code."
 readme = "README.md"
 authors = [{name = "ekcbw"}]
-license = {text = "MIT"}
+license = "MIT"
 keywords = ["mypyc", "mypy", "aot", "speedup", "performance"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Compilers",
+]
 dependencies = [
     "mypy",
     "setuptools",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ekcbw/mypyc-aot"
 
 [build-system]
 requires = ["setuptools"]
