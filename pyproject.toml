@@ -1,6 +1,6 @@
 [project]
 name = "mypyc-aot"
-version = "1.0.2"
+version = "1.0.3"
 description = "A performance optimization library based on mypyc, similar to numba but supporting accelerating general Python code."
 readme = "README.md"
 authors = [{name = "ekcbw"}]

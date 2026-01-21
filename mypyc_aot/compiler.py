@@ -106,12 +106,14 @@ class Compiler:
                 if value.__name__ == name:
                     self._modules.add(name)
                 else:
-                    self._codes.append(f"import {value.__name__} as {name}")
+                    comment = " # type: ignore[import-not-found]" \
+                              if self._ignore_import_not_found else ""
+                    self._codes.append(f"import {value.__name__} as {name}{comment}")
             elif isinstance(value, type) or inspect.isfunction(value) \
                 or inspect.isbuiltin(value):
                 if self._ignore_self and value.__module__.startswith("mypyc_aot"):
                     continue
-                if value.__module__ == __name__:
+                if value.__module__ == scope["__name__"]:
                     source = get_source(value)
                     if source is not None:
                         self._codes.append(source)

@@ -178,4 +178,4 @@ There are a few directions to consider for troubleshooting:
 
 ## Version
 
-Current `mypyc_aot` version: 1.0.2
+Current `mypyc_aot` version: 1.0.3
