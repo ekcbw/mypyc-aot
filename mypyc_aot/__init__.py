@@ -9,4 +9,4 @@ try:
 except ImportError: # 未安装IPython
     pass
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"

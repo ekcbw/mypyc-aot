@@ -115,6 +115,14 @@ def mypyc_aot(
 - **compression_method** (str, optional): Cache compression method. Supports "zstandard", "zlib", or None (no compression). Defaults to DEFAULT_COMP_METHOD (automatically detects available compression libraries)
 - **kw**: Additional keyword arguments passed to the `mypyc_aot_nocache()` function
 
+#### `clear_all_cache()` function
+
+Deletes all cache files within the `~/.mypyc_aot_cache` directory.
+
+#### `clear_intermediate_cache()` function
+
+Cleans up intermediate temporary files in `~/.mypyc_aot_cache` without removing the actual cache. There is no need for recompilation next time.
+
 ### `Compiler` Class
 
 `Compiler` is the core class of mypyc_aot, used to manage compilation environments and function optimization.
@@ -127,7 +135,7 @@ def mypyc_aot(
 - `compiler` (str | None): Specified C compiler
 - `no_symbol_warnings` (bool): Whether to disable symbol warnings
 - `ignore_import_not_found` (bool): Whether to ignore import not found errors
-- `ignore_self` (bool): Whether to ignore the mypyc_aot module itself
+- `ignore_self` (bool): Whether to ignore the mypyc_aot module itself (for bootstrap only)
 - `**kw`: Other mypyc compilation options
 
 #### Main Methods:
@@ -137,9 +145,11 @@ def mypyc_aot(
 @compiler.aot
 def func(...):
     ...
+
+# or
+fn_new = compiler.aot(func, "fn_new") # "fn_new" is the new variable name
 ```
-Marks a function for AOT compilation optimization.  
-Note that you cannot use `fn = compiler.aot(func)` instead of `@compiler.aot` since the compiler modifies `global()` scope when compilation is completed.
+Marks a function for AOT compilation optimization.
 
 ##### `add_func_or_class(source: str)`
 Adds function or class source code string for compilation.
@@ -176,6 +186,15 @@ There are a few directions to consider for troubleshooting:
 1. Check if code complies with mypyc's type requirements.
 2. Check the generated codes and intermediate files in the cache directory (e.g. `~/.mypyc_aot_cache/cache`).
 
+## Building this project
+
+```bash
+git clone https://github.com/ekcbw/mypyc-aot
+cd mypyc-aot
+pip install build
+pyproject-build
+```
+
 ## Version
 
-Current `mypyc_aot` version: 1.0.3
+Current `mypyc_aot` version: 1.0.4

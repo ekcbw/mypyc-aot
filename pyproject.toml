@@ -1,6 +1,6 @@
 [project]
 name = "mypyc-aot"
-version = "1.0.3"
+version = "1.0.4"
 description = "A performance optimization library based on mypyc, similar to numba but supporting accelerating general Python code."
 readme = "README.md"
 authors = [{name = "ekcbw"}]
@@ -11,7 +11,7 @@ classifiers = [
     "Topic :: Software Development :: Compilers",
 ]
 dependencies = [
-    "mypy",
+    "mypy >= 2.1.0", # require librt
     "setuptools",
 ]
 

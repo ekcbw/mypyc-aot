@@ -5,7 +5,6 @@ from mypyc_aot import Compiler
 compiler = Compiler(globals())
 if "--gcc" in sys.argv[1:]:
     compiler.use_custom_compiler("gcc", "g++")
-    sys.argv.remove("--gcc")
 
 @compiler.aot
 class MyPyC:
@@ -27,14 +26,14 @@ class PurePy:
 compiler.compile()
 
 def main():
-    x = int(sys.argv[1]) if len(sys.argv) >= 2 else 50000000
+    n = 50000000
 
     start = time.perf_counter()
-    result_normal = PurePy.compute(x)
+    result_normal = PurePy.compute(n)
     normal_time = time.perf_counter() - start
 
     start = time.perf_counter()
-    result_mypyc = MyPyC.compute(x)
+    result_mypyc = MyPyC.compute(n)
     mypyc_time = time.perf_counter() - start
     
     speedup = normal_time / mypyc_time

@@ -113,6 +113,12 @@ def mypyc_aot(
 - **compression_method** (str, 可选): 缓存压缩方法。支持 "zstandard"、"zlib" 或 None（不压缩）。默认为 DEFAULT_COMP_METHOD（自动检测可用的压缩库）
 - **kw**: 传递给 `mypyc_aot_nocache()` 函数的额外关键字参数
 
+#### `clear_all_cache()` 函数
+删除`~/.mypyc_aot_cache`目录中的所有缓存文件。
+
+#### `clear_intermediate_cache()` 函数
+清理`~/.mypyc_aot_cache`中的中间临时文件，但不清理缓存，下次无需重新编译。
+
 ### `Compiler` 类
 
 `Compiler` 是 mypyc_aot 的核心类，用于管理编译环境和函数优化。
@@ -125,7 +131,7 @@ def mypyc_aot(
 - `compiler` (str | None): 指定 C 编译器
 - `no_symbol_warnings` (bool): 是否禁止符号警告
 - `ignore_import_not_found` (bool): 是否忽略导入未找到错误
-- `ignore_self` (bool): 是否忽略 mypyc_aot 模块自身
+- `ignore_self` (bool): 是否忽略 mypyc_aot 模块自身（仅用于自举）
 - `**kw`: 其他 mypyc 编译选项
 
 #### 主要方法：
@@ -135,9 +141,11 @@ def mypyc_aot(
 @compiler.aot
 def func(...):
     ...
+
+# 或
+fn_new = compiler.aot(func, "fn_new") # "fn_new"为新变量名
 ```
-标记函数进行 AOT 编译优化。  
-注意：不能使用 `fn = compiler.aot(func)` 代替 `@compiler.aot`，因为编译器在编译完成时会修改 `global()` 作用域。
+标记函数进行 AOT 编译优化。
 
 ##### `add_func_or_class(source: str)`
 添加函数或类的源代码字符串进行编译。
@@ -174,6 +182,15 @@ compiler.use_custom_compiler("gcc", "g++")
 1. 检查代码是否符合 mypyc 的类型要求。
 2. 检查缓存目录中生成的代码和中间文件（例如 `~/.mypyc_aot_cache/cache`）。
 
+## 构建本项目
+
+```bash
+git clone https://github.com/ekcbw/mypyc-aot
+cd mypyc-aot
+pip install build
+pyproject-build
+```
+
 ## 版本
 
-当前`mypyc_aot`版本：1.0.3
+当前`mypyc_aot`版本：1.0.4

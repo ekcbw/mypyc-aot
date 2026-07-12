@@ -6,7 +6,7 @@ __all__ = ["init_custom_unix_compiler", "restore_default_compiler"]
 _original_env = {}
 
 def init_custom_unix_compiler(cc: str, cxx: str):
-    # 自定义c/c++编译器，不依赖sysconfig的配置
+    # 自定义C/C++编译器，不依赖sysconfig中的配置
     # cc为"gcc" / "clang"，cxx为"g++" / "clang++"
     env_vars = {
         "CC": cc,
